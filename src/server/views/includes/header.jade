@@ -1,0 +1,99 @@
+//
+   Created by sunjunyi on 6/8/16.
+
+.navTop
+    .container-fluid
+        .navbar-header.clearfix
+        a.navbar-brand(href="/") ADP-EMT
+        .navbar-collapse.collapse
+            ul.navbar-text.navbar-nav
+                li.active
+                    a(href="/") Home
+                    span &nbsp;|&nbsp;
+                li
+                    a(href="/regular/task/new") Create A Task
+                    span &nbsp;|&nbsp;
+                if sessionuser
+                    li.dropdown
+                        if sessionuser.role == 'Administrator'
+                          a.dropdown-toggle(href='#', data-toggle='dropdown')
+                              | Administrator Options
+                              span.caret
+                        else if sessionuser.role == 'Auditor'
+                          a.dropdown-toggle(href='#', data-toggle='dropdown')
+                              | Auditor Options
+                              span.caret
+                        else 
+                          a.dropdown-toggle(href='#', data-toggle='dropdown')
+                              | Specialist Options
+                              span.caret
+                        ul.dropdown-menu(role='menu')
+                            li
+                                a(href="/list/task/my_schedule") My schedule
+                            li
+                                a(href="/list/task/early_input") Early Input
+                            li
+                                a(href="/list/task/team_workload") Team Workload
+
+                        span &nbsp;|&nbsp;
+            if sessionuser
+                p.navbar-text.navbar-right
+                    a(href="/regular/user/profile/#{sessionuser._id}"): span Welcome: #{sessionuser.name}
+                    span &nbsp;|&nbsp;
+                    a.navbar-link(href="/logout") Log Out
+            else
+                p.navbar-text.navbar-right
+                    a.navbar-link(href="#", data-toggle="modal", data-target="#signupModal") Sign Up
+                    span &nbsp;|&nbsp;
+                    a.navbar-link(href="#", data-toggle="modal", data-target="#signinModal") Log In
+#signupModal.modal.fade
+    .modal-dialog.m-signForm
+        .modal-content
+            form(method="POST", action="/user/signup")#signupForm
+                .modal-header Sign Up
+                .modal-body.clearfix
+                    span.err_tip(style="display:none;")
+                    .form-group.clearfix
+                        label(for="signupEmail") Email
+                        input#signupEmail.form-control(name="user[email]", type="text" placeholder="Email")
+                    .form-group.clearfix
+                        label(for="signupPassword") Password
+                        input#signupPassword.form-control(name="user[password]", type="password" placeholder="Password")
+                    .form-group.clearfix
+                        label(for="confirmPassword") Confirm Password
+                        input#confirmPassword.form-control(name="user[confirmpassword]", type="password",placeholder="Confirm Password")
+                    .form-group.clearfix
+                        label(for="signupName") Name
+                        input#signupName.form-control(name="user[name]", type="text" placeholder="Name")
+                    .form-group.clearfix
+                        .radio
+                            label
+                                input#gridRadios1(type='radio', name='user[role]', value='Administrator', checked='')
+                                |           Admin
+                        .radio
+                            label
+                                input#gridRadios2(type='radio', name='user[role]', value='Auditor')
+                                |           Auditor
+                        .radio
+                            label
+                                input#gridRadios3(type='radio', name='user[role]', value='Specialist')
+                                |           Specialist
+                .modal-footer
+                    button.btn.btn-default(type="button", data-dismiss="modal") Close
+                    button.btn.btn-success(type="submit") Sign Up
+#signinModal.modal.fade
+    .modal-dialog.m-signForm
+        .modal-content
+            form(method="POST", action="/user/signin")#signinForm
+                .modal-header Log In
+                .modal-body.clearfix
+                    span.err_tip(style="display:none;")
+                    .form-group.clearfix
+                        label(for="signinEmail") Email
+                        input#signinEmail.form-control(name="user[email]", type="text" placeholder="Email")
+                    .form-group.clearfix
+                        label(for="signinPassword") Password
+                        input#signinPassword.form-control(name="user[password]", type="password"  placeholder="Password")
+                .modal-footer
+                    button.btn.btn-default(type="button", data-dismiss="modal") Close
+                    button.btn.btn-success(type="submit") Log In

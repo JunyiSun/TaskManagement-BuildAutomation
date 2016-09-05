@@ -1,0 +1,41 @@
+extends ../layout
+
+block content
+    .container
+        .row
+            h1 My Schedule
+            table.table.table-hover.table-bordered
+                thead
+                    tr
+                        th Co#
+                        th Company Name
+                        th Segment
+                        th Specialist
+                        th Auditor
+                        th Administrator
+                        th Input Date
+                        th Update Date
+                        th Page Visited
+                        th View
+                        th Edit
+                        th Remove from My Schedule
+                        th Delete
+                tbody
+                    each item in tasks
+                      if sessionuser.name == item.status
+                            tr(class="item-id-#{item._id}")
+                                td #{item.co}
+                                td #{item.company}
+                                td #{item.segment}
+                                td #{item.specialist}
+                                td #{item.auditor}
+                                td #{item.administrator}
+                                td #{moment(item.meta.createAt).format('MM/DD/YYYY')}
+                                td #{moment(item.meta.updateAt).format('MM/DD/YYYY')}
+                                td #{item.pv}
+                                td: a(target="_blank", href="/task/#{item._id}") View
+                                td: a(target="_blank", href="/admin/task/update/#{item._id}") Edit
+                                td 
+                                    button.btn.btn-success.taskRemoveAdd(type="button", data-id="#{item._id}") Remove From My Schedule
+                                td
+                                    button.btn.btn-danger.taskDel(type="button", data-id="#{item._id}") Delete

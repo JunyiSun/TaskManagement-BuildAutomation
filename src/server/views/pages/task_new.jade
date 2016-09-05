@@ -1,0 +1,43 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      form#NewTaskForm.form-horizontal(method="post", action="/regular/task",enctype="multipart/form-data")
+        .form-group
+          label.col-sm-2.control-label(for="inputCo") Co#
+          .col-sm-10
+            input#inputCo.form-control(type="text", name="task[co]", value=task.co)
+        .form-group
+          label.col-sm-2.control-label(for="inputCompany") Company Name
+          .col-sm-10
+            input#inputCompany.form-control(type="text", name="task[company]", value=task.company)
+        .form-group
+          label.col-sm-2.control-label(for="inputSegment") Segment
+          .col-sm-10
+            input#inputSegment.form-control(type="text", name="task[segment]", value=task.segment)
+        .form-group
+          label.col-sm-2.control-label(for="specialistSelect") Specialist
+          .col-sm-10
+            select#specialistSelect.form-control(name="task[specialist]", value=task.specialist)
+              each user in users
+                option #{user.name}
+        .form-group
+          label.col-sm-2.control-label(for="auditorSelect") Auditor
+          .col-sm-10
+            select#auditorSelect.form-control(name="task[auditor]", value=task.auditor)
+              each user in users
+                option #{user.name}
+        .form-group
+          label.col-sm-2.control-label(for="administratorSelect") Administrator
+          .col-sm-10
+            select#administratorSelect.form-control(name="task[administrator]", value=task.administrator)
+              each user in users
+                option #{user.name}
+        .form-group
+          label.col-sm-2.control-label(for="inputNotes") Notes
+          .col-sm-10
+            textarea#inputNotes.form-control(type="text", name="task[notes]")= task.notes
+        .form-group
+          .col-sm-offset-2.col-sm-10
+          button.btn.btn-default(type="submit") Submit

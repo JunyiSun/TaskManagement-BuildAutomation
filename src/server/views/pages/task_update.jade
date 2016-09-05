@@ -1,0 +1,91 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      form.form-horizontal(method="post", action="/regular/task/edit",enctype="multipart/form-data")
+        .col-md-6
+            //- if the id exits, then use a hidden input form to store the id.
+            if task._id
+              input(type="hidden", name="task[_id]", value=task._id)
+            .form-group
+              label.col-sm-2.control-label(for="inputCo") Co#
+              .col-sm-5
+                input#inputCo.form-control(type="text", name="task[co]", readonly='readonly', value=task.co)
+            .form-group
+              label.col-sm-2.control-label(for="inputCompany") Company Name
+              .col-sm-5
+                input#inputCompany.form-control(type="text", name="task[company]", readonly='readonly', value=task.company)
+            .form-group
+              label.col-sm-2.control-label(for="inputSegment") Segment
+              .col-sm-5
+                input#inputSegment.form-control(type="text", name="task[segment]", readonly='readonly', value=task.segment)
+            .form-group
+              label.col-sm-2.control-label(for="inputSpecialist") Specialist
+              .col-sm-5
+                input#inputSpecialist.form-control(type="text", name="task[specialist]", readonly='readonly',value=task.specialist)
+            .form-group
+              label.col-sm-2.control-label(for="inputAuditor") Auditor
+              .col-sm-5
+                input#inputAuditor.form-control(type="text", name="task[auditor]", readonly='readonly',value=task.auditor)
+            .form-group
+              label.col-sm-2.control-label(for="inputAdministrator") Administrator
+              .col-sm-5
+                input#inputAdministrator.form-control(type="text", name="task[administrator]", readonly='readonly',value=task.administrator)
+         .col-md-6
+             if statusrole == "Administrator"
+                 .form-group
+                   label.col-sm-2.control-label(for="inputKS") Keying Status
+                   .col-sm-10
+                     select#KSSelect.form-control(name="task[ks]", value=task.ks)
+                        option Awaiting an answer
+                        option Keying now
+                        option Keying by Specialist
+                        option No Run
+                 .form-group
+                    label.col-sm-2.control-label(for="inputDR") Delay Reason
+                    .col-sm-10
+                      select#DRSelect.form-control(name="task[dr]", value=task.dr)
+                         option Carry Over - Awaiting an answer
+                         option Carry Over - Late Input 
+                         option Carry Over - No Input Record
+                         option Carry Over - Partial Input Record
+             else if statusrole == "Auditor"
+                 .form-group
+                   label.col-sm-2.control-label(for="inputPA") Peer Approval
+                   .col-sm-10
+                     select#PASelect.form-control(name="task[pa]", value=task.pa)
+                        option Approve
+                        option Reject
+                        option No Run
+                 .form-group
+                    label.col-sm-2.control-label(for="inputRR") Reject Reason
+                    .col-sm-10
+                      select#RRSelect.form-control(name="task[rr]", value=task.rr)
+                         option Client Revision
+                         option Entries Missed
+                         option Error on Trans Proof
+                         option Pay End Date  
+             else
+                 .form-group
+                   label.col-sm-2.control-label(for="inputSA") Specialist Approval
+                   .col-sm-10
+                     select#SASelect.form-control(name="task[sa]", value=task.sa)
+                        option Approve
+                        option Reject
+                        option Post audit
+                 .form-group
+                    label.col-sm-2.control-label(for="inputSRR") Reject Reason
+                    .col-sm-10
+                      select#SRRSelect.form-control(name="task[srr]", value=task.srr)
+                         option Client Revision
+                         option Entries Missed
+                         option Error on Trans Proof
+                         option Pay End Date                  
+             .form-group
+               label.col-sm-2.control-label(for="inputNotes") Notes
+               .col-sm-10
+                 textarea#inputNotes.form-control(type="text", name="task[notes]")= task.notes
+             .form-group
+               .col-sm-offset-2.col-sm-10
+               button.btn.btn-default(type="submit") Save

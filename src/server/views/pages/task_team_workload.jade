@@ -1,0 +1,39 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      h1 Team Workload
+      table.table.table-hover.table-bordered
+        thead
+          tr
+            th Co#
+            th Company Name
+            th Segment
+            th Specialist
+            th Auditor
+            th Administrator
+            th Input Date
+            th Update Date
+            th Page Visited
+            th View
+            th Add To My Schedule
+            th Delete
+        tbody
+          each item in tasks
+            if item.status == undefined
+                tr(class="item-id-#{item._id}")
+                  td #{item.co}
+                  td #{item.company}
+                  td #{item.segment}
+                  td #{item.specialist}
+                  td #{item.auditor}
+                  td #{item.administrator}
+                  td #{moment(item.meta.createAt).format('MM/DD/YYYY')}
+                  td #{moment(item.meta.updateAt).format('MM/DD/YYYY')}
+                  td #{item.pv}
+                  td: a(target="_blank", href="/task/#{item._id}") View
+                  td 
+                    button.btn.btn-primary.taskAdd(type="button", data-id="#{item._id}") Add To My Schedule
+                  td
+                    button.btn.btn-danger.taskDel(type="button", data-id="#{item._id}") Delete

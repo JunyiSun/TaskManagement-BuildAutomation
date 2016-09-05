@@ -1,0 +1,29 @@
+{
+  "name": "emt-internal-apps-poc",
+  "description": "POC for the event management tool",
+  "main": "app.js",
+  "authors": [
+    "Junyi Sun"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "React",
+    "Node.js",
+    "SQL"
+  ],
+  "homepage": "",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "jquery-validation": "^1.15.0",
+    "angular": "^1.5.7",
+    "angular-resource": "^1.5.7",
+    "jquery": "2.2.4",
+    "angular-route": "^1.5.7"
+  }
+}

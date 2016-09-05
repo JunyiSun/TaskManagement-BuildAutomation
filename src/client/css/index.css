@@ -1,0 +1,13 @@
+body {
+    padding-top: 0px;
+    padding-bottom: 40px;
+    color: #5a5a5a;
+}
+
+
+@media (min-width: 992px) {
+    .feature-heading {
+margin-top: 5px;
+color: #4357FA;
+    }
+}

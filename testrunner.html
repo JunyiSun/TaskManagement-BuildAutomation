@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mocha Tests</title>
+    <link rel="stylesheet" href="node_modules/mocha/mocha.css">
+</head>
+<body>
+<div id="mocha"></div>
+<script src="node_modules/mocha/mocha.js"></script>
+<script src="node_modules/chai/chai.js"></script>
+
+<script>mocha.setup('bdd')</script>
+
+<!-- load code you want to test here -->
+<script src="test/test_user.js"></script>
+<script src="test/test_task.js"></script>
+<script>
+    var assert = chai.assert;
+
+    describe('Array', function() {
+        it('should start empty', function() {
+            var arr = [];
+
+            assert.equal(arr.length, 0);
+        });
+        it('should start empty failing test for demo purpose', function() {
+            var arr = [5, 7];
+
+            assert.equal(arr.length, 0);
+        });
+    });
+
+
+    describe('Testing user management', function () {
+
+        it('should register a new user', function() {
+            var arr = [];
+            assert.equal(arr.length, 0);
+        });
+        it('should remove a user', function() {
+            var arr = [];
+            assert.equal(arr.length, 0);
+        });
+    });
+
+
+    describe('Task', function() {
+        describe('#create task', function () {
+            it('should return -1 when the task value is not present', function () {
+                assert.equal(-1, [1,2,3].indexOf(5));
+                assert.equal(-1, [1,2,3].indexOf(0));
+            });
+        });
+    });
+
+    describe('User', function() {
+        describe('#create user', function () {
+            it('should return -1 when the user value is not present', function () {
+                assert.equal(-1, [1,2,3].indexOf(5));
+                assert.equal(-1, [1,2,3].indexOf(0));
+            });
+        });
+    });
+
+    describe('Login', function() {
+        describe('#login user', function () {
+            it('should login successfully', function () {
+                assert.equal(-1, [1,2,3].indexOf(5));
+                assert.equal(-1, [1,2,3].indexOf(0));
+            });
+        });
+    });
+
+    describe('Logout', function() {
+        describe('#logout user', function () {
+            it('should logout successfully', function () {
+                assert.equal(-1, [1,2,3].indexOf(5));
+                assert.equal(-1, [1,2,3].indexOf(0));
+            });
+        });
+    });
+
+
+
+
+</script>
+<!-- load your test files here -->
+
+<script>
+    mocha.checkLeaks();
+    mocha.globals(['jQuery']);
+    mocha.run();
+</script>
+</body>
+</html>
